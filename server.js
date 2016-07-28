@@ -10,7 +10,9 @@ var app = express();
 
 app.use(express.static(path.join(__dirname, '/client')));
 
-app.use(bodyParser.json());
+app.use(bodyParser.json()); // support json encoded bodies
+
+app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
 
 require('./server/config/mongoose.js');
 
