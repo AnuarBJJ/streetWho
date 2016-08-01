@@ -1,0 +1,18 @@
+the app
+1. got map displayed
+2. got current location detected
+3. got name of street from Google API
+4. got some kind of response from the API server
+5. got the app send json
+6. got the app get json response
+
+the API server
+1. built simple server to:
+	a. recieve http post
+	b. respond with "something"
+2. deployed to DigitalOcean
+
+toDo:
+1. make the app read json
+2. make the app speak
+3. make the app recognize intesection, in addition to the current address

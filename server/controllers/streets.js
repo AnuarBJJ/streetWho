@@ -9,9 +9,38 @@ module.exports = (function(){
 				if(err){
 					console.log('fire')
 				} else {
-					res.json(result.info);
+					console.log(result)
+					if(result){
+						res.json(result.info);
+					}
+					else{
+						var newStreet = new Street({
+							name : req.body.name,
+							info : "Come back for the info"
+						});
+						 
+						newStreet.save(function (err, data) {
+							if (err) console.log(err);
+							else res.json("Interesting. New street.");
+						});
+					}
 				}
 			})
+		},
+		getAll: function(req, res){
+			Street.find({}, function(err, streets) {
+				if(err){
+					console.log("problem getting all streets")
+				} else{
+				    // var allStreets = {};
+
+				    // streets.forEach(function(user) {
+				    //   allStreets[user._id] = user;
+				    // });
+
+				    res.send(streets);
+			    }
+			});
 		}
 	}
 })()
