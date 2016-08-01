@@ -39,10 +39,10 @@
 
 	$( "#target" ).click(function() {
 		var streetName = $(this).siblings('.form-group').children('.input-group').children('.form-control').val();
-		console.log(streetName)
 		$.post( "/streets", { name: streetName} )
-		.done(function(info) {
-			alert(info)
+		.done(function(street) {
+			console.log(street)
+			alert(street.info)
 		});
 
 	});
