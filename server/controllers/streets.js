@@ -32,15 +32,26 @@ module.exports = (function(){
 				if(err){
 					console.log("problem getting all streets")
 				} else{
-				    // var allStreets = {};
-
-				    // streets.forEach(function(user) {
-				    //   allStreets[user._id] = user;
-				    // });
-
 				    res.send(streets);
 			    }
 			});
+		},
+		inserInfo: function(req, res){
+			console.log(req.body)
+			Street.findOne({_id: req.body.id}, function(err, street){
+				if(err){
+					console.log(err)
+				} else{
+					console.log(street)
+					street.info = req.body.info
+					console.log(street)
+
+					street.save(function (err) {
+					    if (err) return handleError(err);
+					    res.send(street);
+					  })
+				}
+			})
 		}
 	}
 })()

@@ -44,12 +44,25 @@
 				var newDiv = "<div class='row'>" 
 						+ "<div class='col-md-2'>"
 						+ strt.name
-						+ "</div><div class='col-md-6'><input class='form-control input-lg'></div><div class='col-md-1'><button type=button' class='btn btn-primary'>Submit</button></div>"
+						+ "</div><div class='col-md-6'><input class='form-control input-lg' placeholder='"
+						+ strt.info
+						+ "'></div><div class='col-md-1'><button class='btn btn-primary street-info' id=" 
+						+	strt._id
+						+ " type=button'>Submit</button></div>"
 						+ "</div>"
 				$( ".list" ).append( newDiv);
 			})
 		});
-	})
+	});
+
+	 $(document).on('click', 'button.street-info', function(){
+	 	var id = $(this).attr('id')
+	 	var info =   $(this).parent().siblings('.col-md-6').children('.form-control.input-lg').val();
+ 		$.post('/insertinfo', {id: id, info: info})
+			.done(function(confirmation){
+				console.log('something happened')
+			})
+     });
 
 
 </script>
