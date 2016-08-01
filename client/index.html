@@ -6,30 +6,41 @@
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 </head>
 <body>
-	<div>Let's street</div>
-	<div id="target">
-	  Click here
-	</div>
-	<div id="other">
-	  Trigger the handler
+	<div class="jumbotron">
+	  <h1 class="display-3">San Francisco Streets!</h1>
+	  <p class="lead">On the go information about the best city in the world.</p>
+	  <hr class="m-y-2">
+	  <p>It's like National Geographic while you're rolling.</p>
+<!-- 	  <p class="lead">
+	    <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+	  </p> -->
 	</div>
 
-	<form action="/getall" method="get">
-	  First name: <input type="text" name="fname"><br>
-	  Last name: <input type="text" name="lname"><br>
-	  <input type="submit" value="Submit">
+		<form class="form-inline">
+	  <div class="form-group">
+	    <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+	    <div class="input-group">
+	      <!-- <div class="input-group-addon">$</div> -->
+	      <input type="text" class="form-control" id="exampleInputAmount" placeholder="Street name">
+	      <!-- <div class="input-group-addon">.00</div> -->
+	    </div>
+	  </div>
+	  <button id='target' type="submit" class="btn btn-primary">Get info</button>
 	</form>
 
 	<button id='getall'>Get All Streets</button>
 
 	<div class='list'></div>
 
+
+
 </body>
 <script type="text/javascript">
 
 	$( "#target" ).click(function() {
-
-		$.post( "/streets", { name: "Pine St"} )
+		var streetName = $(this).siblings('.form-group').children('.input-group').children('.form-control').val();
+		console.log(streetName)
+		$.post( "/streets", { name: streetName} )
 		.done(function(info) {
 			alert(info)
 		});
@@ -48,7 +59,7 @@
 						+ strt.info
 						+ "'></div><div class='col-md-1'><button class='btn btn-primary street-info' id=" 
 						+	strt._id
-						+ " type=button'>Submit</button></div>"
+						+ " type='button'>Submit</button></div>"
 						+ "</div>"
 				$( ".list" ).append( newDiv);
 			})

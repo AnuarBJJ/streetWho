@@ -11,7 +11,7 @@ module.exports = (function(){
 				} else {
 					console.log(result)
 					if(result){
-						res.json(result.info);
+						res.send(result.info);
 					}
 					else{
 						var newStreet = new Street({
